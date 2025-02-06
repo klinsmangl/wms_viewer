@@ -27,8 +27,8 @@
     <div class="start-50 translate-middle-x fixed-top mt-3 col-6">
       <nav class="navbar bg-light justify-content-center shadow-lg rounded">
         <div class="container-fluid">
-          <button class="btn btn-secondary me-2" type="submit" title="Legenda">
-            <i class="bi bi-list-task"></i>
+          <button class="btn btn-secondary me-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLegend" title="Legenda">
+            <i class="bi bi-list-task" ></i>
           </button>
           <form class="d-flex flex-fill">
             <input
@@ -50,10 +50,23 @@
         </div>
       </nav>
     </div>
+
     <!--final da barra de navegação-->
-    <div class="container-fluid p-0">
       <div id="map" class="w-100"></div>
     </div>
+
+    <!-- Offcanvas -->
+    <div class="offcanvas offcanvas-start bg-light.bg-gradient" tabindex="-1" id="offcanvasLegend">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasLegend">Legenda</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div id="legends-container"></div>
+      </div>
+    </div>
+    <div class="container-fluid p-0">
+
     <!--final do corpo -->
     <script
       src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
@@ -65,6 +78,9 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-    <script src="src/js/script.js"></script>
+    <script src="src/js/map.js"></script>
+    <script src="src/js/info.js"></script>
+    <script src="src/js/legenda.js"></script>
+    <script src="src/js/overlays.js"></script> 
   </body>
 </html>

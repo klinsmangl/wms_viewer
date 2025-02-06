@@ -6,3 +6,16 @@ h1 {
     height: 100vh;
     background-color: gray;
 }
+
+.leaflet-popup-content {
+    margin: 12px!important;
+}
+
+/* .leaflet-popup-content-wrapper {
+    background: rebeccapurple!important;
+} */
+
+.table-responsive {
+max-height: 300px;
+overflow-y: auto;
+}
