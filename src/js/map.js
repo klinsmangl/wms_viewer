@@ -9,7 +9,8 @@ const googlemaps = L.tileLayer(
   }
 );
 
-const urlWms = "https://geoserver.sefin.fortaleza.ce.gov.br/geoserver/ows";
+const urlParams = new URLSearchParams(window.location.search);
+const urlWms = urlParams.get("wms");
 
 const baselayers = {
   "Open Street Map": osm,

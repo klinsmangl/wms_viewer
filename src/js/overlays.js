@@ -1,4 +1,3 @@
-const urlParams = new URLSearchParams(window.location.search);
 const layerUrlParam = urlParams.get("layer");
 
 let layerValues = layerUrlParam ? layerUrlParam.split(",") : [];
