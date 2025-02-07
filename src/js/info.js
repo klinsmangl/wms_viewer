@@ -11,7 +11,7 @@ map.on("click", async ({ latlng: { lat, lng } }) => {
   
     const getLayerData = async (layerName) => {
       const wfsUrl = `${urlWms}?service=WFS&version=1.0.0&request=GetFeature&typeName=${layerName}&outputFormat=application/json&CQL_FILTER=${encodeURIComponent(
-        `INTERSECTS(the_geom, SRID=4326;POINT(${lng} ${lat}))`
+        `DWITHIN(the_geom, SRID=4326;POINT(${lng} ${lat}), 2, meters)`
       )}`;
   
       try {
@@ -40,7 +40,7 @@ map.on("click", async ({ latlng: { lat, lng } }) => {
           .join("");
   
         return `
-          <button class="btn btn-dark w-100" data-bs-toggle="collapse" data-bs-target="#collapse-${layerName}">
+          <button class="btn btn-dark w-100 text-truncate" title="${layerName}" data-bs-toggle="collapse" data-bs-target="#collapse-${layerName}">
             <strong>${layerName}</strong>
           </button>
           <div class="table-responsive">
