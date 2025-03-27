@@ -21,87 +21,114 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
     <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet-geosearch@3.0.0/dist/geosearch.css"
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet-geosearch@3.0.0/dist/geosearch.css"
     />
     <title>Document</title>
   </head>
   <body>
-    <!--corpo-->
-    <div class="start-50 translate-middle-x fixed-top mt-3 col-6">
-      <nav class="navbar bg-light justify-content-center shadow-lg rounded">
-        <div class="container-fluid">
-          <button class="btn btn-secondary me-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLegend" title="Legenda">
-            <i class="bi bi-list-task" ></i>
-          </button>
-          <form class="d-flex col-4 me-2">
-            <input
-              class="form-control rounded-pill rounded-end-0"
-              title="Pesquisar Camadas"
-              list="camadas-list"
-              placeholder="Pesquisar Camadas"
-              id="texto-pesquisa"
-              value="OMI:view_omi_completa"
-              autocomplete="off"
-            />
-            <datalist id="camadas-list">
-              <!-- Lista de Camadas -->
-            </datalist>
-            <button class="btn btn-secondary rounded-pill rounded-start-0" type="submit" title="Adicionar Camada" id="pesquisar">
-              <i class="bi bi-plus-circle"></i>
-            </button>
-          </form>
-          <div class="d-flex flex-fill">
-            <div class="input-group">
-              <span class="input-group-text"><i class="bi bi-search"></i></span>
-              <input
-              class="form-control"
-              list="autocomplete-list"
-              id="search-input"
-              placeholder="Procurar endereço..."
-              autocomplete="off"
-            />
-            </div>
-            <datalist id="autocomplete-list"></datalist>
-          </div>
+    <div
+      class="position-absolute top-0 start-0 w-100 d-flex flex-row align-items-center p-2"
+      style="z-index: 401"
+    >
+      <!-- Legend Button -->
+      <button
+        class="btn btn-secondary me-2"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasLegend"
+        title="Legend"
+      >
+        <i class="bi bi-list-task"></i>
+      </button>
 
-        </div>
-      </nav>
+      <!-- Layer Search Input Group -->
+      <div class="input-group me-2 flex-grow-1">
+        <input
+          class="form-control"
+          title="Search Layers"
+          list="camadas-list"
+          placeholder="Search Layers"
+          id="texto-pesquisa"
+          value="OMI:view_omi_completa"
+          autocomplete="off"
+        />
+        <datalist id="camadas-list">
+          <!-- Layer List -->
+        </datalist>
+        <button
+          class="btn btn-secondary"
+          type="submit"
+          title="Add Layer"
+          id="pesquisar"
+        >
+          <span class="d-none d-md-inline">Adicionar </span
+          ><i class="bi bi-file-earmark-plus"></i>
+        </button>
+      </div>
+
+      <!-- Location Search Input Group -->
+      <div class="input-group flex-grow-1">
+        <input
+          class="form-control"
+          list="autocomplete-list"
+          id="search-input"
+          placeholder="Coordinates or Address"
+          autocomplete="off"
+        />
+        <datalist id="autocomplete-list"></datalist>
+        <button
+          class="btn btn-secondary"
+          type="submit"
+          title="Search"
+          id="pesquisar-localizacao"
+        >
+          <span class="d-none d-md-inline">Pesquisar </span
+          ><i class="bi bi-search"></i>
+        </button>
+      </div>
     </div>
 
     <!--final da barra de navegação-->
-      <div id="map" class="w-100"></div>
-    </div>
+
+    <div id="map" class="w-100"></div>
 
     <!-- Offcanvas -->
-    <div class="offcanvas offcanvas-start bg-light.bg-gradient" tabindex="-1" id="offcanvasLegend">
+    <div
+      class="offcanvas offcanvas-start bg-light.bg-gradient"
+      tabindex="-1"
+      id="offcanvasLegend"
+    >
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasLegend">Legenda</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+        ></button>
       </div>
       <div class="offcanvas-body">
         <div id="legends-container"></div>
       </div>
     </div>
     <div class="container-fluid p-0">
-
-    <!--final do corpo -->
-    <script
-      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-      crossorigin=""
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-    <!-- Make sure you put this AFTER leaflet.js, when using with leaflet -->
-    <script src="https://unpkg.com/leaflet-geosearch@latest/dist/bundle.min.js"></script>
-    <script src="src/js/map.js"></script>
-    <script src="src/js/geocoder.js"></script>
-    <script src="src/js/info.js"></script>
-    <script src="src/js/legenda.js"></script>
-    <script src="src/js/overlays.js"></script> 
+      <!--final do corpo -->
+      <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""
+      ></script>
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"
+      ></script>
+      <!-- Importações -->
+      <script src="https://unpkg.com/leaflet-geosearch@latest/dist/bundle.min.js"></script>
+      <script src="src/js/map.js"></script>
+      <script src="src/js/geocoder.js"></script>
+      <script src="src/js/info.js"></script>
+      <script src="src/js/legenda.js"></script>
+      <script src="src/js/overlays.js"></script>
+    </div>
   </body>
 </html>

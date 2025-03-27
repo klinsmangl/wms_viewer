@@ -30,7 +30,6 @@ document.getElementById("pesquisar").addEventListener("click", (e) => {
         transparent: true,
         maxZoom: 22,
         format: "image/png",
-        attribution: "Prefeitura municipal de Fortaleza",
       });
       overlays[selectedValue] = camada;
       map.addLayer(camada);
