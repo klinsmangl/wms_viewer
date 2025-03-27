@@ -10,6 +10,12 @@ const googlemaps = L.tileLayer(
 );
 
 const urlParams = new URLSearchParams(window.location.search);
+if (!urlParams.get("wms")) {
+  urlParams.set(
+    "wms",
+    "https://geoserver.sefin.fortaleza.ce.gov.br/geoserver/ows"
+  );
+}
 const urlWms = urlParams.get("wms");
 
 const baselayers = {

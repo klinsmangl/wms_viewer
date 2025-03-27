@@ -1,12 +1,14 @@
 map.on("click", async ({ latlng: { lat, lng } }) => {
   const popup = L.popup()
     .setLatLng([lat, lng])
-    .setContent(`
+    .setContent(
+      `
       <div class="d-flex align-items-center justify-content-center p-2">
         <div class="spinner-grow text-secondary" role="status"></div>
         <span class="ms-2 fw-semibold text-secondary">Carregando...</span>
       </div>
-    `)
+    `
+    )
     .openOn(map);
 
   const getLayerData = async (layerName, lat, lng) => {
@@ -14,7 +16,8 @@ map.on("click", async ({ latlng: { lat, lng } }) => {
     const size = map.getSize();
     const bbox = map.getBounds().toBBoxString();
 
-    const getFeatureInfoUrl = `${urlWms}?service=WMS` +
+    const getFeatureInfoUrl =
+      `${urlWms}?service=WMS` +
       `&version=1.1.1` +
       `&request=GetFeatureInfo` +
       `&layers=${layerName}` +
@@ -42,7 +45,7 @@ map.on("click", async ({ latlng: { lat, lng } }) => {
 
   // Corrigindo a chamada: passando explicitamente lat e lng
   const results = await Promise.all(
-    Object.keys(overlays).map(layerName => getLayerData(layerName, lat, lng))
+    Object.keys(overlays).map((layerName) => getLayerData(layerName, lat, lng))
   );
 
   const content = results
@@ -52,12 +55,14 @@ map.on("click", async ({ latlng: { lat, lng } }) => {
       if (!properties || Object.keys(properties).length === 0) return "";
 
       const propertyRows = Object.entries(properties)
-        .map(([key, value]) => `
+        .map(
+          ([key, value]) => `
           <tr class="d-flex text-break">
             <th class="col-7 d-flex align-items-center">${key}</th>
             <td class="col-5 d-flex align-items-center">${value}</td>
           </tr>
-        `)
+        `
+        )
         .join("");
 
       return `
@@ -76,5 +81,8 @@ map.on("click", async ({ latlng: { lat, lng } }) => {
     .filter((html) => html.trim() !== "")
     .join("");
 
-  popup.setContent(content || "<div class='p-2 text-center text-muted'>Nenhum dado encontrado.</div>");
+  popup.setContent(
+    content ||
+      "<div class='p-2 text-center text-muted'>Nenhum dado encontrado.</div>"
+  );
 });
